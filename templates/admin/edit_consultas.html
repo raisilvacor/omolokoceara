@@ -1,0 +1,262 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar Consultas - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: Página Consultas</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<form method="POST" class="edit-form">
+    <h2>Informações da Página</h2>
+    <div class="form-group">
+        <label for="page_title">Título da Página</label>
+        <input type="text" id="page_title" name="page_title" value="{{ data.title or 'Consultas' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="page_subtitle">Subtítulo da Página</label>
+        <input type="text" id="page_subtitle" name="page_subtitle" value="{{ data.subtitle or 'Atendimento espiritual e orientação' }}" required>
+    </div>
+    
+    <h2>Seção de Introdução</h2>
+    <div class="card-item">
+        <div class="form-group">
+            <label for="intro_title">Título da Seção</label>
+            <input type="text" id="intro_title" name="intro_title" value="{{ data.intro.title if data.intro else 'Sobre Nossas Consultas' }}" required>
+        </div>
+        
+        <div id="intro-paragraphs">
+            {% if data.intro and data.intro.paragraphs %}
+                {% for para in data.intro.paragraphs %}
+                <div class="paragraph-item">
+                    <div class="form-group">
+                        <label>Parágrafo {{ loop.index }}</label>
+                        <textarea name="intro_para_{{ loop.index0 }}" rows="3" required>{{ para }}</textarea>
+                        <button type="button" class="btn btn-danger btn-small" onclick="removeParagraph(this)">Remover</button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="paragraph-item">
+                    <div class="form-group">
+                        <label>Parágrafo 1</label>
+                        <textarea name="intro_para_0" rows="3" required>O CASS oferece consultas espirituais realizadas com respeito, ética e dedicação, seguindo as tradições afro-brasileiras.</textarea>
+                        <button type="button" class="btn btn-danger btn-small" onclick="removeParagraph(this)">Remover</button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <input type="hidden" id="intro_paragraph_count" name="intro_paragraph_count" value="{{ data.intro.paragraphs|length if data.intro and data.intro.paragraphs else 1 }}">
+        <button type="button" class="btn btn-secondary" onclick="addParagraph()">Adicionar Parágrafo</button>
+    </div>
+    
+    <h2>Como Funciona</h2>
+    <div class="card-item">
+        <div class="form-group">
+            <label for="functioning_title">Título</label>
+            <input type="text" id="functioning_title" name="functioning_title" value="{{ data.functioning.title if data.functioning else 'Como Funciona' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="functioning_description">Descrição</label>
+            <textarea id="functioning_description" name="functioning_description" rows="3" required>{{ data.functioning.description if data.functioning else '' }}</textarea>
+        </div>
+        
+        <div id="functioning-list">
+            <label>Itens da Lista</label>
+            {% if data.functioning and data.functioning.items %}
+                {% for item in data.functioning.items %}
+                <div class="list-item">
+                    <div class="form-group">
+                        <input type="text" name="functioning_item_{{ loop.index0 }}" value="{{ item }}" required>
+                        <button type="button" class="btn btn-danger btn-small" onclick="removeListItem(this)">Remover</button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="list-item">
+                    <div class="form-group">
+                        <input type="text" name="functioning_item_0" value="Agendamento prévio obrigatório" required>
+                        <button type="button" class="btn btn-danger btn-small" onclick="removeListItem(this)">Remover</button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <input type="hidden" id="functioning_list_count" name="functioning_list_count" value="{{ data.functioning.items|length if data.functioning and data.functioning.items else 1 }}">
+        <button type="button" class="btn btn-secondary" onclick="addFunctioningItem()">Adicionar Item</button>
+    </div>
+    
+    <h2>Horários de Atendimento</h2>
+    <div class="card-item">
+        <div class="form-group">
+            <label for="hours_title">Título</label>
+            <input type="text" id="hours_title" name="hours_title" value="{{ data.hours.title if data.hours else 'Horários de Atendimento' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="hours_description">Descrição</label>
+            <textarea id="hours_description" name="hours_description" rows="2" required>{{ data.hours.description if data.hours else '' }}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="hours_content">Conteúdo dos Horários (use \n para quebras de linha)</label>
+            <textarea id="hours_content" name="hours_content" rows="4" required>{{ data.hours.content if data.hours else 'Segunda a Sexta: 9h às 18h\nSábado: 9h às 13h\nDomingo: Fechado' }}</textarea>
+        </div>
+    </div>
+    
+    <h2>Valores e Contribuições</h2>
+    <div class="card-item">
+        <div class="form-group">
+            <label for="values_title">Título</label>
+            <input type="text" id="values_title" name="values_title" value="{{ data.values.title if data.values else 'Valores e Contribuições' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="values_content">Conteúdo</label>
+            <textarea id="values_content" name="values_content" rows="4" required>{{ data.values.content if data.values else '' }}</textarea>
+        </div>
+    </div>
+    
+    <h2>Call to Action (Agende sua Consulta)</h2>
+    <div class="card-item">
+        <div class="form-group">
+            <label for="cta_title">Título</label>
+            <input type="text" id="cta_title" name="cta_title" value="{{ data.cta.title if data.cta else 'Agende sua Consulta' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="cta_description">Descrição</label>
+            <textarea id="cta_description" name="cta_description" rows="3" required>{{ data.cta.description if data.cta else '' }}</textarea>
+        </div>
+    </div>
+    
+    <h2>Observações Importantes</h2>
+    <div class="card-item">
+        <div class="form-group">
+            <label for="notes_title">Título</label>
+            <input type="text" id="notes_title" name="notes_title" value="{{ data.notes.title if data.notes else 'Observações Importantes' }}" required>
+        </div>
+        
+        <div id="notes-list">
+            <label>Itens da Lista</label>
+            {% if data.notes and data.notes.items %}
+                {% for item in data.notes.items %}
+                <div class="list-item">
+                    <div class="form-group">
+                        <input type="text" name="notes_item_{{ loop.index0 }}" value="{{ item }}" required>
+                        <button type="button" class="btn btn-danger btn-small" onclick="removeListItem(this)">Remover</button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="list-item">
+                    <div class="form-group">
+                        <input type="text" name="notes_item_0" value="É necessário confirmar o agendamento com antecedência" required>
+                        <button type="button" class="btn btn-danger btn-small" onclick="removeListItem(this)">Remover</button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <input type="hidden" id="notes_list_count" name="notes_list_count" value="{{ data.notes.items|length if data.notes and data.notes.items else 1 }}">
+        <button type="button" class="btn btn-secondary" onclick="addNotesItem()">Adicionar Item</button>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+
+<script>
+function addParagraph() {
+    const container = document.getElementById('intro-paragraphs');
+    const count = container.children.length;
+    const paraDiv = document.createElement('div');
+    paraDiv.className = 'paragraph-item';
+    paraDiv.innerHTML = `
+        <div class="form-group">
+            <label>Parágrafo ${count + 1}</label>
+            <textarea name="intro_para_${count}" rows="3" required></textarea>
+            <button type="button" class="btn btn-danger btn-small" onclick="removeParagraph(this)">Remover</button>
+        </div>
+    `;
+    container.appendChild(paraDiv);
+    document.getElementById('intro_paragraph_count').value = count + 1;
+    // Renumerar labels
+    container.querySelectorAll('.paragraph-item').forEach((item, index) => {
+        item.querySelector('label').textContent = `Parágrafo ${index + 1}`;
+    });
+}
+
+function removeParagraph(btn) {
+    btn.closest('.paragraph-item').remove();
+    const container = document.getElementById('intro-paragraphs');
+    document.getElementById('intro_paragraph_count').value = container.children.length;
+    // Renumerar labels
+    container.querySelectorAll('.paragraph-item').forEach((item, index) => {
+        item.querySelector('label').textContent = `Parágrafo ${index + 1}`;
+    });
+}
+
+function addFunctioningItem() {
+    const container = document.getElementById('functioning-list');
+    const count = container.querySelectorAll('.list-item').length;
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'list-item';
+    itemDiv.innerHTML = `
+        <div class="form-group">
+            <input type="text" name="functioning_item_${count}" required>
+            <button type="button" class="btn btn-danger btn-small" onclick="removeListItem(this)">Remover</button>
+        </div>
+    `;
+    container.appendChild(itemDiv);
+    document.getElementById('functioning_list_count').value = count + 1;
+}
+
+function addNotesItem() {
+    const container = document.getElementById('notes-list');
+    const count = container.querySelectorAll('.list-item').length;
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'list-item';
+    itemDiv.innerHTML = `
+        <div class="form-group">
+            <input type="text" name="notes_item_${count}" required>
+            <button type="button" class="btn btn-danger btn-small" onclick="removeListItem(this)">Remover</button>
+        </div>
+    `;
+    container.appendChild(itemDiv);
+    document.getElementById('notes_list_count').value = count + 1;
+}
+
+function removeListItem(btn) {
+    btn.closest('.list-item').remove();
+    const container = btn.closest('[id$="-list"]');
+    if (container) {
+        const countInput = document.getElementById(container.id.replace('-list', '_list_count'));
+        if (countInput) {
+            countInput.value = container.querySelectorAll('.list-item').length;
+        }
+    }
+}
+</script>
+
+<style>
+.paragraph-item, .list-item {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.form-group input[type="text"] {
+    margin-bottom: 0.5rem;
+}
+</style>
+{% endblock %}
+

@@ -229,6 +229,69 @@ def admin_edit(section):
                 'number': request.form.get('number'),
                 'message': request.form.get('message')
             })
+        elif section == 'consultas':
+            # Processar dados da página Consultas
+            consultas_data = data.get('pages', {}).get('consultas', {})
+            
+            # Introdução - parágrafos
+            intro_paragraphs = []
+            intro_count = int(request.form.get('intro_paragraph_count', 0))
+            for i in range(intro_count):
+                para = request.form.get(f'intro_para_{i}')
+                if para:
+                    intro_paragraphs.append(para)
+            
+            # Como Funciona - lista
+            functioning_items = []
+            functioning_count = int(request.form.get('functioning_list_count', 0))
+            for i in range(functioning_count):
+                item = request.form.get(f'functioning_item_{i}')
+                if item:
+                    functioning_items.append(item)
+            
+            # Observações - lista
+            notes_items = []
+            notes_count = int(request.form.get('notes_list_count', 0))
+            for i in range(notes_count):
+                item = request.form.get(f'notes_item_{i}')
+                if item:
+                    notes_items.append(item)
+            
+            # Atualizar dados da página consultas
+            pages_data = data.get('pages', {})
+            pages_data['consultas'] = {
+                'title': request.form.get('page_title'),
+                'subtitle': request.form.get('page_subtitle'),
+                'intro': {
+                    'title': request.form.get('intro_title'),
+                    'paragraphs': intro_paragraphs
+                },
+                'functioning': {
+                    'title': request.form.get('functioning_title'),
+                    'description': request.form.get('functioning_description'),
+                    'items': functioning_items
+                },
+                'hours': {
+                    'title': request.form.get('hours_title'),
+                    'description': request.form.get('hours_description'),
+                    'content': request.form.get('hours_content')
+                },
+                'values': {
+                    'title': request.form.get('values_title'),
+                    'content': request.form.get('values_content')
+                },
+                'cta': {
+                    'title': request.form.get('cta_title'),
+                    'description': request.form.get('cta_description')
+                },
+                'notes': {
+                    'title': request.form.get('notes_title'),
+                    'items': notes_items
+                }
+            }
+            update_section('pages', pages_data)
+            flash('Página Consultas atualizada com sucesso!', 'success')
+            return redirect(url_for('admin_edit', section='consultas'))
         elif section == 'sobre':
             # Processar dados da página Sobre
             sobre_data = data.get('pages', {}).get('sobre', {})
@@ -294,6 +357,8 @@ def admin_edit(section):
     # Carregar dados da seção
     if section == 'sobre':
         section_data = data.get('pages', {}).get('sobre', {})
+    elif section == 'consultas':
+        section_data = data.get('pages', {}).get('consultas', {})
     else:
         section_data = get_section_data(section)
     return render_template(f'admin/edit_{section}.html', section=section, data=section_data)

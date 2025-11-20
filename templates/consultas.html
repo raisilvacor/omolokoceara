@@ -1,95 +1,102 @@
 {% extends "base.html" %}
 
-{% block title %}Consultas - CASS{% endblock %}
+{% block title %}{{ data.pages.consultas.title if data and data.pages and data.pages.consultas else 'Consultas' }} - CASS{% endblock %}
 
 {% block content %}
+{% set consultas = data.pages.consultas if data and data.pages and data.pages.consultas else {} %}
 <section class="page-header">
     <div class="container">
-        <h1 class="page-title">Consultas</h1>
-        <p class="page-subtitle">Atendimento espiritual e orientação</p>
+        <h1 class="page-title">{{ consultas.title or 'Consultas' }}</h1>
+        <p class="page-subtitle">{{ consultas.subtitle or 'Atendimento espiritual e orientação' }}</p>
     </div>
 </section>
 
 <section class="consultas-content">
     <div class="container">
+        {% if consultas.intro %}
         <div class="consultas-intro">
-            <h2>Sobre Nossas Consultas</h2>
-            <p>
-                O CASS oferece consultas espirituais realizadas com respeito, ética e dedicação, 
-                seguindo as tradições afro-brasileiras. Nossos atendimentos são conduzidos por 
-                pessoas experientes e comprometidas com o bem-estar espiritual e emocional de 
-                todos que nos procuram.
-            </p>
-            <p>
-                Realizamos consultas para orientação espiritual, esclarecimento de dúvidas e 
-                apoio em momentos de necessidade, sempre com respeito à individualidade e às 
-                crenças de cada pessoa.
-            </p>
+            <h2>{{ consultas.intro.title or 'Sobre Nossas Consultas' }}</h2>
+            {% if consultas.intro.paragraphs %}
+                {% for para in consultas.intro.paragraphs %}
+                <p>{{ para }}</p>
+                {% endfor %}
+            {% endif %}
         </div>
+        {% endif %}
 
         <div class="consultas-info">
+            {% if consultas.functioning %}
             <div class="info-card">
-                <h3>Como Funciona</h3>
-                <p>
-                    As consultas são realizadas mediante agendamento prévio. Entre em contato 
-                    conosco para verificar disponibilidade e agendar seu horário.
-                </p>
+                <h3>{{ consultas.functioning.title or 'Como Funciona' }}</h3>
+                {% if consultas.functioning.description %}
+                <p>{{ consultas.functioning.description }}</p>
+                {% endif %}
+                {% if consultas.functioning.items %}
                 <ul>
-                    <li>Agendamento prévio obrigatório</li>
-                    <li>Atendimento presencial ou online</li>
-                    <li>Respeito e sigilo garantidos</li>
-                    <li>Ambiente acolhedor e respeitoso</li>
+                    {% for item in consultas.functioning.items %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
                 </ul>
+                {% endif %}
             </div>
+            {% endif %}
 
+            {% if consultas.hours %}
             <div class="info-card">
-                <h3>Horários de Atendimento</h3>
-                <p>
-                    Nossos horários de atendimento para consultas variam conforme a disponibilidade. 
-                    Entre em contato para agendar o melhor horário para você.
-                </p>
+                <h3>{{ consultas.hours.title or 'Horários de Atendimento' }}</h3>
+                {% if consultas.hours.description %}
+                <p>{{ consultas.hours.description }}</p>
+                {% endif %}
+                {% if consultas.hours.content %}
                 <div class="horarios">
-                    <p><strong>Segunda a Sexta:</strong> 9h às 18h</p>
-                    <p><strong>Sábado:</strong> 9h às 13h</p>
-                    <p><strong>Domingo:</strong> Fechado</p>
+                    {% for line in consultas.hours.content.split('\n') %}
+                    {% if line.strip() %}
+                    <p>{% if ':' in line %}{{ line.split(':', 1)[0] }}:<strong>{{ line.split(':', 1)[1] }}</strong>{% else %}{{ line }}{% endif %}</p>
+                    {% endif %}
+                    {% endfor %}
                 </div>
+                {% endif %}
             </div>
+            {% endif %}
 
+            {% if consultas.values %}
             <div class="info-card">
-                <h3>Valores e Contribuições</h3>
-                <p>
-                    As consultas são realizadas mediante contribuição voluntária ou valores 
-                    previamente acordados. Entre em contato para mais informações sobre valores 
-                    e formas de pagamento.
-                </p>
+                <h3>{{ consultas.values.title or 'Valores e Contribuições' }}</h3>
+                {% if consultas.values.content %}
+                <p>{{ consultas.values.content }}</p>
+                {% endif %}
             </div>
+            {% endif %}
         </div>
 
+        {% if consultas.cta %}
         <div class="consultas-cta">
-            <h2>Agende sua Consulta</h2>
-            <p>
-                Para agendar sua consulta, entre em contato conosco pelo WhatsApp. 
-                Estamos à disposição para esclarecer dúvidas e agendar o melhor horário para você.
-            </p>
+            <h2>{{ consultas.cta.title or 'Agende sua Consulta' }}</h2>
+            {% if consultas.cta.description %}
+            <p>{{ consultas.cta.description }}</p>
+            {% endif %}
             <div class="cta-buttons">
                 {% if data and data.whatsapp and data.whatsapp.number %}
-                <a href="https://wa.me/{{ data.whatsapp.number }}?text={{ 'Olá! Gostaria de agendar uma consulta.'|urlencode }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <a href="https://wa.me/{{ data.whatsapp.number }}?text={{ (data.whatsapp.message or 'Olá! Gostaria de agendar uma consulta.')|urlencode }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                     <span style="margin-right: 8px;">📱</span> Agendar pelo WhatsApp
                 </a>
                 {% endif %}
             </div>
         </div>
+        {% endif %}
 
+        {% if consultas.notes %}
         <div class="consultas-observacoes">
-            <h3>Observações Importantes</h3>
+            <h3>{{ consultas.notes.title or 'Observações Importantes' }}</h3>
+            {% if consultas.notes.items %}
             <ul>
-                <li>É necessário confirmar o agendamento com antecedência</li>
-                <li>Em caso de desistência, favor avisar com pelo menos 24h de antecedência</li>
-                <li>Respeitamos todas as crenças e tradições religiosas</li>
-                <li>Nossas consultas são realizadas com ética e respeito</li>
-                <li>O sigilo e a privacidade são garantidos em todos os atendimentos</li>
+                {% for item in consultas.notes.items %}
+                <li>{{ item }}</li>
+                {% endfor %}
             </ul>
+            {% endif %}
         </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}
