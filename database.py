@@ -73,7 +73,7 @@ def init_default_data():
         },
         'welcome': {
             'title': 'Bem-vindo ao Omoloko Ceará',
-            'subtitle': 'Omoloko Ceará',
+            'subtitle': '',
             'description': 'Um espaço dedicado à preservação, estudo e difusão das tradições culturais e espirituais afro-brasileiras, promovendo o respeito, a diversidade e o conhecimento ancestral.'
         },
         'valores': {
@@ -90,11 +90,11 @@ def init_default_data():
         },
         'footer': {
             'name': 'Omoloko Ceará',
-            'subtitle': 'Omoloko Ceará',
+            'subtitle': '',
             'description': 'Preservando e difundindo as tradições afro-brasileiras.',
-            'email': 'contato@cass.org.br',
+            'email': 'contato@omolokoceara.org.br',
             'phone': '(11) 99999-9999',
-            'address': 'Endereço do Omoloko Ceará\nSão Paulo, SP',
+            'address': 'Endereço do Omoloko Ceará\nCeará, Brasil',
             'hours': 'Segunda a Sexta: 9h às 18h\nSábado: 9h às 13h',
             'copyright': '© 2025 Omoloko Ceará. Todos os direitos reservados.',
             'social_media': {
