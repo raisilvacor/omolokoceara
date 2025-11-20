@@ -173,18 +173,7 @@ a {
     z-index: 1;
 }
 
-.slide-1 {
-    background-image: url('../images/slides/10.jpg');
-}
-
-.slide-2 {
-    background-image: url('../images/slides/11.jpg');
-}
-
-.slide-3 {
-    background-image: url('../images/slides/12.jpg');
-}
-
+/* Slides são definidos dinamicamente via inline styles no template */
 
 .slide-content {
     position: relative;

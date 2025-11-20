@@ -1,7 +1,7 @@
 {
     "logo": {
         "filename": "logo.png",
-        "alt": "CASS - Congá de Aruanda São Sebastião"
+        "alt": "Omoloko Ceará"
     },
     "menu": {
         "items": [
@@ -13,8 +13,8 @@
         ]
     },
     "welcome": {
-        "title": "Bem-vindo ao CASS",
-        "subtitle": "Congá de Aruanda São Sebastião",
+        "title": "Bem-vindo ao Omoloko Ceará",
+        "subtitle": "Omoloko Ceará",
         "description": "Um espaço dedicado à preservação, estudo e difusão das tradições culturais e espirituais afro-brasileiras, promovendo o respeito, a diversidade e o conhecimento ancestral.",
         "button_text": "Consultar agora",
         "button_url": "/consultas"
@@ -45,9 +45,9 @@
         ]
     },
     "sobre": {
-        "title": "Sobre o CASS",
+        "title": "Sobre o Omoloko Ceará",
         "content": [
-            "O Congá de Aruanda São Sebastião é um instituto cultural e espiritual comprometido com a preservação e difusão das tradições afro-brasileiras. Nossa missão é promover o conhecimento, o respeito e a valorização dessas tradições milenares, contribuindo para a construção de uma sociedade mais inclusiva e culturalmente rica.",
+            "O Omoloko Ceará é um instituto cultural e espiritual comprometido com a preservação e difusão das tradições afro-brasileiras. Nossa missão é promover o conhecimento, o respeito e a valorização dessas tradições milenares, contribuindo para a construção de uma sociedade mais inclusiva e culturalmente rica.",
             "Trabalhamos com atividades educacionais, culturais e espirituais, sempre respeitando a diversidade e promovendo o diálogo inter-religioso e intercultural."
         ],
         "button_text": "Saiba mais sobre nós",
@@ -74,7 +74,7 @@
     },
     "agenda": {
         "title": "Agenda",
-        "description": "Confira nossa programação de eventos, atividades e celebrações. Fique por dentro de tudo que acontece no CASS.",
+        "description": "Confira nossa programação de eventos, atividades e celebrações. Fique por dentro de tudo que acontece no Omoloko Ceará.",
         "events": [
             {
                 "day": "15",
@@ -108,7 +108,7 @@
     },
     "videos": {
         "title": "Vídeos",
-        "description": "Confira nossos vídeos sobre cultura, tradições e atividades do CASS.",
+        "description": "Confira nossos vídeos sobre cultura, tradições e atividades do Omoloko Ceará.",
         "videos": [
             {
                 "id": "dQw4w9WgXcQ",
@@ -125,33 +125,33 @@
         ]
     },
     "footer": {
-        "name": "CASS",
-        "subtitle": "Congá de Aruanda São Sebastião",
+        "name": "Omoloko Ceará",
+        "subtitle": "Omoloko Ceará",
         "description": "Preservando tradições e cultura afro-brasileira",
-        "email": "contato@cass.org.br",
+        "email": "contato@omolokoceara.org.br",
         "phone": "(00) 0000-0000",
         "address": "Rua Exemplo, 123\nBairro, Cidade - Estado\nCEP: 00000-000",
         "hours": "Segunda a Sexta: 9h às 18h\nSábado: 9h às 13h\nDomingo: Fechado",
-        "copyright": "2025 CASS - Congá de Aruanda São Sebastião. Todos os direitos reservados.",
+        "copyright": "2025 Omoloko Ceará. Todos os direitos reservados.",
         "social_media": {
             "whatsapp": "https://wa.me/5500000000000",
-            "instagram": "https://instagram.com/cass",
-            "facebook": "https://facebook.com/cass",
-            "youtube": "https://youtube.com/@cass"
+            "instagram": "https://instagram.com/omolokoceara",
+            "facebook": "https://facebook.com/omolokoceara",
+            "youtube": "https://youtube.com/@omolokoceara"
         }
     },
     "whatsapp": {
         "number": "5500000000000",
-        "message": "Olá! Gostaria de saber mais sobre o CASS."
+        "message": "Olá! Gostaria de saber mais sobre o Omoloko Ceará."
     },
     "pages": {
         "sobre": {
-            "title": "Sobre o CASS",
+            "title": "Sobre o Omoloko Ceará",
             "subtitle": "Conheça nossa história e missão",
             "historia": {
                 "title": "Nossa História",
                 "paragraphs": [
-                    "O Congá de Aruanda São Sebastião (CASS) foi fundado com o propósito de preservar, estudar e difundir as tradições culturais e espirituais afro-brasileiras. Nossa instituição nasceu da necessidade de criar um espaço respeitoso e acolhedor para a prática, estudo e transmissão desses saberes ancestrais.",
+                    "O Omoloko Ceará (Omoloko Ceará) foi fundado com o propósito de preservar, estudar e difundir as tradições culturais e espirituais afro-brasileiras. Nossa instituição nasceu da necessidade de criar um espaço respeitoso e acolhedor para a prática, estudo e transmissão desses saberes ancestrais.",
                     "Ao longo dos anos, temos trabalhado incansavelmente para promover o conhecimento sobre a rica herança cultural afro-brasileira, sempre com respeito à diversidade e compromisso com a verdade histórica e cultural."
                 ]
             },
@@ -195,7 +195,7 @@
         },
         "atividades": {
             "title": "Nossas Atividades",
-            "subtitle": "Conheça os programas e eventos do CASS",
+            "subtitle": "Conheça os programas e eventos do Omoloko Ceará",
             "activities": []
         },
         "consultas": {

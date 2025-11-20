@@ -60,7 +60,7 @@ def init_default_data():
     default_data = {
         'logo': {
             'filename': 'logo.png',
-            'alt': 'CASS - Congá de Aruanda São Sebastião'
+            'alt': 'Omoloko Ceará'
         },
         'menu': {
             'items': [
@@ -72,8 +72,8 @@ def init_default_data():
             ]
         },
         'welcome': {
-            'title': 'Bem-vindo ao CASS',
-            'subtitle': 'Congá de Aruanda São Sebastião',
+            'title': 'Bem-vindo ao Omoloko Ceará',
+            'subtitle': 'Omoloko Ceará',
             'description': 'Um espaço dedicado à preservação, estudo e difusão das tradições culturais e espirituais afro-brasileiras, promovendo o respeito, a diversidade e o conhecimento ancestral.'
         },
         'valores': {
@@ -89,14 +89,14 @@ def init_default_data():
             'items': []
         },
         'footer': {
-            'name': 'CASS',
-            'subtitle': 'Congá de Aruanda São Sebastião',
+            'name': 'Omoloko Ceará',
+            'subtitle': 'Omoloko Ceará',
             'description': 'Preservando e difundindo as tradições afro-brasileiras.',
             'email': 'contato@cass.org.br',
             'phone': '(11) 99999-9999',
-            'address': 'Endereço do CASS\nSão Paulo, SP',
+            'address': 'Endereço do Omoloko Ceará\nSão Paulo, SP',
             'hours': 'Segunda a Sexta: 9h às 18h\nSábado: 9h às 13h',
-            'copyright': '© 2025 CASS. Todos os direitos reservados.',
+            'copyright': '© 2025 Omoloko Ceará. Todos os direitos reservados.',
             'social_media': {
                 'whatsapp': '',
                 'instagram': '',
@@ -129,7 +129,7 @@ def init_default_data():
         },
         'pages': {
             'sobre': {
-                'title': 'Sobre o CASS',
+                'title': 'Sobre o Omoloko Ceará',
                 'subtitle': 'Conheça nossa história e missão',
                 'historia': {
                     'paragraphs': []

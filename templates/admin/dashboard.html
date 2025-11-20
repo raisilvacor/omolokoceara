@@ -1,11 +1,11 @@
 {% extends "admin/base.html" %}
 
-{% block title %}Dashboard - CASS Admin{% endblock %}
+{% block title %}Dashboard - Omoloko Ceará Admin{% endblock %}
 
 {% block content %}
 <div class="dashboard-header">
     <h1>Dashboard</h1>
-    <p>Bem-vindo ao painel administrativo do CASS</p>
+    <p>Bem-vindo ao painel administrativo do Omoloko Ceará</p>
 </div>
 
 <div class="dashboard-grid">
@@ -22,7 +22,7 @@
     </div>
     
     <div class="dashboard-card">
-        <h3>Bem-vindo ao CASS</h3>
+        <h3>Bem-vindo ao Omoloko Ceará</h3>
         <p>Edite a seção de boas-vindas da página inicial</p>
         <a href="{{ url_for('admin_edit', section='welcome') }}" class="btn btn-primary">Editar</a>
     </div>
@@ -34,7 +34,7 @@
     </div>
     
     <div class="dashboard-card">
-        <h3>Sobre o CASS</h3>
+        <h3>Sobre o Omoloko Ceará</h3>
         <p>Edite o conteúdo da página Sobre</p>
         <a href="{{ url_for('admin_edit', section='sobre') }}" class="btn btn-primary">Editar</a>
     </div>

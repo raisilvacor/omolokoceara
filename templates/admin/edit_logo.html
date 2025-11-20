@@ -1,6 +1,6 @@
 {% extends "admin/base.html" %}
 
-{% block title %}Editar Logo - CASS Admin{% endblock %}
+{% block title %}Editar Logo - Omoloko Ceará Admin{% endblock %}
 
 {% block content %}
 <div class="edit-header">
@@ -17,7 +17,7 @@
     
     <div class="form-group">
         <label for="alt">Texto Alternativo (Alt Text)</label>
-        <input type="text" id="alt" name="alt" value="{{ data.alt or 'CASS - Congá de Aruanda São Sebastião' }}" required>
+        <input type="text" id="alt" name="alt" value="{{ data.alt or 'Omoloko Ceará' }}" required>
         <small class="form-text">Texto que aparece quando a imagem não carrega (importante para acessibilidade)</small>
     </div>
     
@@ -25,7 +25,7 @@
         <label>Preview da Logo Atual</label>
         <div style="padding: 1rem; background: white; border-radius: 5px; margin-top: 0.5rem;">
             <img src="{{ url_for('static', filename='images/' + (data.filename or 'logo.png')) }}" 
-                 alt="{{ data.alt or 'Logo CASS' }}" 
+                 alt="{{ data.alt or 'Logo Omoloko Ceará' }}" 
                  style="max-height: 150px; max-width: 100%;">
         </div>
         <small class="form-text">Para alterar a imagem, substitua o arquivo na pasta static/images/ pelo mesmo nome</small>
