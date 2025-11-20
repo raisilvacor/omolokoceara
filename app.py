@@ -32,28 +32,54 @@ if USE_DATABASE:
     # Inicializar banco de dados (será chamado na primeira requisição)
     db.init_app(app)
     
-    # Criar tabelas e inicializar dados na primeira execução
-    with app.app_context():
-        try:
-            db.create_all()
-            # Verificar se já existe dados, se não, inicializar
-            from database import SiteData, User
-            if SiteData.query.count() == 0:
-                from database import init_default_data
-                init_default_data()
-            # Verificar se já existe usuário admin
-            if User.query.filter_by(username='admin').first() is None:
-                admin_user = User(
-                    username='admin',
-                    name='Administrador',
-                    email='admin@cass.org.br',
-                    active=True
-                )
-                admin_user.set_password('admin123')
-                db.session.add(admin_user)
-                db.session.commit()
-        except Exception as e:
-            app.logger.error(f"Erro ao inicializar banco de dados: {e}")
+    # Flag para garantir inicialização única
+    _db_initialized = False
+    
+    def init_database():
+        """Inicializa o banco de dados e migra dados se necessário"""
+        global _db_initialized
+        if _db_initialized:
+            return
+        
+        with app.app_context():
+            try:
+                db.create_all()
+                
+                # Tentar migrar dados dos arquivos JSON primeiro (preserva dados existentes)
+                from migrate_data import migrate_json_to_database
+                migration_result = migrate_json_to_database(app)
+                
+                # Se não houve migração e o banco está vazio, inicializar com dados padrão
+                from database import SiteData, User
+                if SiteData.query.count() == 0:
+                    from database import init_default_data
+                    init_default_data()
+                    app.logger.info("Dados padrão inicializados no banco de dados")
+                
+                # Verificar se já existe usuário admin (apenas se não houver usuários)
+                if User.query.count() == 0:
+                    admin_user = User(
+                        username='admin',
+                        name='Administrador',
+                        email='admin@cass.org.br',
+                        active=True
+                    )
+                    admin_user.set_password('admin123')
+                    db.session.add(admin_user)
+                    db.session.commit()
+                    app.logger.info("Usuário admin padrão criado")
+                
+                _db_initialized = True
+            except Exception as e:
+                app.logger.error(f"Erro ao inicializar banco de dados: {e}")
+                import traceback
+                app.logger.error(traceback.format_exc())
+    
+    # Inicializar banco na primeira requisição
+    @app.before_request
+    def ensure_database_initialized():
+        if USE_DATABASE and not _db_initialized:
+            init_database()
 
 @app.context_processor
 def inject_data():
