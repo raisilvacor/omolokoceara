@@ -1,15 +1,59 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from functools import wraps
 import os
-from admin.utils import (
-    load_data, save_data, get_section_data, update_section,
-    load_users, verify_user, get_all_users, get_user_by_id,
-    create_user, update_user, delete_user
-)
+
+# Tentar usar banco de dados se DATABASE_URL estiver configurado, senão usar JSON
+if os.environ.get('DATABASE_URL'):
+    from database import db
+    from admin.utils_db import (
+        load_data, save_data, get_section_data, update_section,
+        verify_user, get_all_users, get_user_by_id,
+        create_user, update_user, delete_user
+    )
+    USE_DATABASE = True
+else:
+    from admin.utils import (
+        load_data, save_data, get_section_data, update_section,
+        verify_user, get_all_users, get_user_by_id,
+        create_user, update_user, delete_user
+    )
+    USE_DATABASE = False
 
 app = Flask(__name__)
 # Usar variável de ambiente para secret_key em produção, ou gerar uma nova
 app.secret_key = os.environ.get('SECRET_KEY', os.urandom(24).hex())
+
+# Configurar banco de dados se disponível
+if USE_DATABASE:
+    # Configurar SQLAlchemy
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
+    # Inicializar banco de dados (será chamado na primeira requisição)
+    db.init_app(app)
+    
+    # Criar tabelas e inicializar dados na primeira execução
+    with app.app_context():
+        try:
+            db.create_all()
+            # Verificar se já existe dados, se não, inicializar
+            from database import SiteData, User
+            if SiteData.query.count() == 0:
+                from database import init_default_data
+                init_default_data()
+            # Verificar se já existe usuário admin
+            if User.query.filter_by(username='admin').first() is None:
+                admin_user = User(
+                    username='admin',
+                    name='Administrador',
+                    email='admin@cass.org.br',
+                    active=True
+                )
+                admin_user.set_password('admin123')
+                db.session.add(admin_user)
+                db.session.commit()
+        except Exception as e:
+            app.logger.error(f"Erro ao inicializar banco de dados: {e}")
 
 @app.context_processor
 def inject_data():
