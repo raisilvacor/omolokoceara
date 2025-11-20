@@ -104,9 +104,31 @@ def index():
 
 @app.route('/sobre')
 def sobre():
-    data = load_data()
-    sobre_data = data.get('pages', {}).get('sobre', {})
-    return render_template('sobre.html', data=data, sobre=sobre_data)
+    try:
+        data = load_data()
+        sobre_data = data.get('pages', {}).get('sobre', {})
+        
+        # Garantir que a estrutura está correta
+        if not sobre_data:
+            sobre_data = {}
+        
+        # Garantir que as seções existem
+        if 'historia' not in sobre_data:
+            sobre_data['historia'] = {'title': 'Nossa História', 'paragraphs': []}
+        if 'missao' not in sobre_data:
+            sobre_data['missao'] = {'title': 'Nossa Missão', 'intro': '', 'list': []}
+        if 'valores' not in sobre_data:
+            sobre_data['valores'] = {'title': 'Nossos Valores', 'items': []}
+        if 'visao' not in sobre_data:
+            sobre_data['visao'] = {'title': 'Nossa Visão', 'content': ''}
+        
+        return render_template('sobre.html', data=data, sobre=sobre_data)
+    except Exception as e:
+        app.logger.error(f"Erro ao carregar página Sobre: {e}")
+        import traceback
+        app.logger.error(traceback.format_exc())
+        # Retornar página com dados vazios em caso de erro
+        return render_template('sobre.html', data={}, sobre={})
 
 @app.route('/atividades')
 def atividades():

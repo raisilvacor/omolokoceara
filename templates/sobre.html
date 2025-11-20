@@ -12,38 +12,46 @@
 
 <section class="about-content">
     <div class="container">
-        {% if sobre and sobre.historia %}
+        {% if sobre and sobre.historia and sobre.historia.paragraphs %}
         <div class="about-section">
-            <h2>{{ sobre.historia.title }}</h2>
+            <h2>{{ sobre.historia.title or 'Nossa História' }}</h2>
             {% for paragraph in sobre.historia.paragraphs %}
+            {% if paragraph %}
             <p>{{ paragraph }}</p>
+            {% endif %}
             {% endfor %}
         </div>
         {% endif %}
 
         {% if sobre and sobre.missao %}
         <div class="about-section">
-            <h2>{{ sobre.missao.title }}</h2>
+            <h2>{{ sobre.missao.title or 'Nossa Missão' }}</h2>
+            {% if sobre.missao.intro %}
             <p>{{ sobre.missao.intro }}</p>
-            {% if sobre.missao.list %}
+            {% endif %}
+            {% if sobre.missao.list and sobre.missao.list|length > 0 %}
             <ul class="mission-list">
                 {% for item in sobre.missao.list %}
+                {% if item %}
                 <li>{{ item }}</li>
+                {% endif %}
                 {% endfor %}
             </ul>
             {% endif %}
         </div>
         {% endif %}
 
-        {% if sobre and sobre.valores %}
+        {% if sobre and sobre.valores and sobre.valores.items %}
         <div class="about-section">
-            <h2>{{ sobre.valores.title }}</h2>
+            <h2>{{ sobre.valores.title or 'Nossos Valores' }}</h2>
             <div class="values-grid">
                 {% for valor in sobre.valores.items %}
+                {% if valor and valor.title %}
                 <div class="value-item">
                     <h3>{{ valor.title }}</h3>
-                    <p>{{ valor.description }}</p>
+                    <p>{{ valor.description or '' }}</p>
                 </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -51,8 +59,10 @@
 
         {% if sobre and sobre.visao %}
         <div class="about-section">
-            <h2>{{ sobre.visao.title }}</h2>
+            <h2>{{ sobre.visao.title or 'Nossa Visão' }}</h2>
+            {% if sobre.visao.content %}
             <p>{{ sobre.visao.content }}</p>
+            {% endif %}
         </div>
         {% endif %}
     </div>
