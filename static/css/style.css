@@ -1111,6 +1111,24 @@ a {
     color: var(--bg-white);
     opacity: 0.8;
     font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.developer-credit {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+}
+
+.rsdev-link {
+    color: #a855f7; /* Cor lilás */
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.rsdev-link:hover {
+    color: #9333ea; /* Lilás mais escuro no hover */
+    text-decoration: underline;
 }
 
 /* WhatsApp Floating Button */
