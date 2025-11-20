@@ -3,32 +3,31 @@
 {% block title %}Início - CASS{% endblock %}
 
 {% block content %}
+{% if data and data.slides and data.slides.slides %}
+    {% set slides_data = data.slides.slides %}
+{% else %}
+    {% set slides_data = [
+        {'image': '10.jpg', 'title': 'Preservando Tradições', 'description': 'Mantendo viva a rica herança cultural afro-brasileira'},
+        {'image': '11.jpg', 'title': 'Educação e Cultura', 'description': 'Promovendo conhecimento e respeito às tradições ancestrais'},
+        {'image': '12.jpg', 'title': 'Comunidade Unida', 'description': 'Fortalecendo laços e valorizando a diversidade'}
+    ] %}
+{% endif %}
 <section class="carousel-section">
     <div class="carousel-container">
         <div class="carousel-slides">
-            <div class="carousel-slide active slide-1">
+            {% for slide in slides_data %}
+            <div class="carousel-slide{% if loop.first %} active{% endif %}" style="background-image: url('{{ url_for('static', filename='images/slides/' + slide.image) }}');">
                 <div class="slide-content">
-                    <h2>Preservando Tradições</h2>
-                    <p>Mantendo viva a rica herança cultural afro-brasileira</p>
+                    <h2>{{ slide.title }}</h2>
+                    <p>{{ slide.description }}</p>
                 </div>
             </div>
-            <div class="carousel-slide slide-2">
-                <div class="slide-content">
-                    <h2>Educação e Cultura</h2>
-                    <p>Promovendo conhecimento e respeito às tradições ancestrais</p>
-                </div>
-            </div>
-            <div class="carousel-slide slide-3">
-                <div class="slide-content">
-                    <h2>Comunidade Unida</h2>
-                    <p>Fortalecendo laços e valorizando a diversidade</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="carousel-dots">
-            <span class="dot active" data-slide="0"></span>
-            <span class="dot" data-slide="1"></span>
-            <span class="dot" data-slide="2"></span>
+            {% for slide in slides_data %}
+            <span class="dot{% if loop.first %} active{% endif %}" data-slide="{{ loop.index0 }}"></span>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -80,7 +79,7 @@
                 <h2 class="section-title">Sobre o CASS</h2>
                 <p>
                     CASS (Congá de Aruanda São Sebastião) é um templo de tradição do Omolokô na cidade de Fortaleza, Estado do Ceará, fundado em 2009. 
-A comunidade é liderada pelo Tata Ti Inkice Newton de Oxóssi, também conhecido como Tata Ti Inkice Kaindekewala, que foi iniciado no Omolokô no Ceará em 1991 e tem um papel ativo na preservação dos fundamentos ancestrais e na difusão dessa tradição na região. 
+A comunidade é liderada de Oxóssi, também conhecido como Tata Ti Inkice Kaindekewala, que foi iniciado no Omolokô no Ceará em 1991 e tem um papel ativo na preservação dos fundamentos ancestrais e na difusão dessa tradição na região. 
 O Omolokô é reconhecido como um culto de matriz africana que incorpora elementos das culturas banto, ameríndias e espíritas, sendo considerado uma expressão viva das intersecções culturais no Brasil. A comunidade CASS, sob a direção de Tata Newton, faz parte do movimento de povos e comunidades tradicionais de terreiros do Ceará, que têm buscado o reconhecimento e a valorização de suas práticas e espaços sagrados.
                 </p>
                 <p>

@@ -1,0 +1,178 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar Slides - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: Slides do Carousel</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<form method="POST" class="edit-form" id="slides-form">
+    <div class="form-group">
+        <label>Slides do Carousel</label>
+        <small class="form-text" style="display: block; margin-bottom: 1rem;">
+            Configure os slides que aparecem no carousel da página inicial. 
+            Para alterar as imagens, substitua os arquivos na pasta static/images/slides/ pelos mesmos nomes.
+        </small>
+    </div>
+    
+    <div id="slides-container">
+        {% if data and data.slides %}
+            {% for slide in data.slides %}
+            <div class="slide-item">
+                <h3>Slide {{ loop.index }}</h3>
+                <div class="form-group">
+                    <label>Nome do Arquivo da Imagem</label>
+                    <input type="text" name="slide_image_{{ loop.index0 }}" 
+                           value="{{ slide.image or '' }}" 
+                           placeholder="ex: 10.jpg" required>
+                    <small class="form-text">Nome do arquivo na pasta static/images/slides/</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Título do Slide</label>
+                    <input type="text" name="slide_title_{{ loop.index0 }}" 
+                           value="{{ slide.title or '' }}" 
+                           placeholder="ex: Preservando Tradições" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Descrição do Slide</label>
+                    <textarea name="slide_description_{{ loop.index0 }}" 
+                              rows="2" 
+                              placeholder="ex: Mantendo viva a rica herança cultural afro-brasileira" required>{{ slide.description or '' }}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Preview</label>
+                    <div style="padding: 1rem; background: white; border-radius: 5px; margin-top: 0.5rem;">
+                        <img src="{{ url_for('static', filename='images/slides/' + (slide.image or '10.jpg')) }}" 
+                             alt="{{ slide.title or 'Slide' }}" 
+                             style="max-width: 100%; max-height: 200px; object-fit: cover; border-radius: 5px;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div style="display: none; padding: 1rem; text-align: center; color: #999;">
+                            Imagem não encontrada: {{ slide.image or '10.jpg' }}
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn btn-danger btn-small" onclick="removeSlide(this)">Remover Slide</button>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="slide-item">
+                <h3>Slide 1</h3>
+                <div class="form-group">
+                    <label>Nome do Arquivo da Imagem</label>
+                    <input type="text" name="slide_image_0" value="10.jpg" placeholder="ex: 10.jpg" required>
+                    <small class="form-text">Nome do arquivo na pasta static/images/slides/</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Título do Slide</label>
+                    <input type="text" name="slide_title_0" value="Preservando Tradições" placeholder="ex: Preservando Tradições" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Descrição do Slide</label>
+                    <textarea name="slide_description_0" rows="2" placeholder="ex: Mantendo viva a rica herança cultural afro-brasileira" required>Mantendo viva a rica herança cultural afro-brasileira</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Preview</label>
+                    <div style="padding: 1rem; background: white; border-radius: 5px; margin-top: 0.5rem;">
+                        <img src="{{ url_for('static', filename='images/slides/10.jpg') }}" 
+                             alt="Slide 1" 
+                             style="max-width: 100%; max-height: 200px; object-fit: cover; border-radius: 5px;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div style="display: none; padding: 1rem; text-align: center; color: #999;">
+                            Imagem não encontrada: 10.jpg
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn btn-danger btn-small" onclick="removeSlide(this)">Remover Slide</button>
+            </div>
+        {% endif %}
+    </div>
+    
+    <input type="hidden" id="slide_count" name="slide_count" value="{{ data.slides|length if data and data.slides else 1 }}">
+    <button type="button" class="btn btn-secondary" onclick="addSlide()" style="margin-top: 1rem;">Adicionar Slide</button>
+    
+    <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">Salvar Alterações</button>
+</form>
+
+<script>
+let slideIndex = {{ data.slides|length if data and data.slides else 1 }};
+
+function addSlide() {
+    const container = document.getElementById('slides-container');
+    const count = container.children.length;
+    const slideDiv = document.createElement('div');
+    slideDiv.className = 'slide-item';
+    slideDiv.innerHTML = `
+        <h3>Slide ${count + 1}</h3>
+        <div class="form-group">
+            <label>Nome do Arquivo da Imagem</label>
+            <input type="text" name="slide_image_${count}" placeholder="ex: 10.jpg" required>
+            <small class="form-text">Nome do arquivo na pasta static/images/slides/</small>
+        </div>
+        
+        <div class="form-group">
+            <label>Título do Slide</label>
+            <input type="text" name="slide_title_${count}" placeholder="ex: Preservando Tradições" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Descrição do Slide</label>
+            <textarea name="slide_description_${count}" rows="2" placeholder="ex: Mantendo viva a rica herança cultural afro-brasileira" required></textarea>
+        </div>
+        
+        <button type="button" class="btn btn-danger btn-small" onclick="removeSlide(this)">Remover Slide</button>
+    `;
+    container.appendChild(slideDiv);
+    document.getElementById('slide_count').value = count + 1;
+    // Renumerar títulos
+    container.querySelectorAll('.slide-item').forEach((item, index) => {
+        item.querySelector('h3').textContent = `Slide ${index + 1}`;
+    });
+}
+
+function removeSlide(btn) {
+    if (document.getElementById('slides-container').children.length <= 1) {
+        alert('É necessário ter pelo menos um slide!');
+        return;
+    }
+    btn.closest('.slide-item').remove();
+    const container = document.getElementById('slides-container');
+    document.getElementById('slide_count').value = container.children.length;
+    // Renumerar títulos
+    container.querySelectorAll('.slide-item').forEach((item, index) => {
+        item.querySelector('h3').textContent = `Slide ${index + 1}`;
+    });
+}
+</script>
+
+<style>
+.slide-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 5px;
+    border-left: 4px solid #228B22;
+}
+
+.slide-item h3 {
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+</style>
+{% endblock %}
+

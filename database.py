@@ -108,6 +108,25 @@ def init_default_data():
             'number': '',
             'message': 'Olá! Gostaria de agendar uma consulta.'
         },
+        'slides': {
+            'slides': [
+                {
+                    'image': '10.jpg',
+                    'title': 'Preservando Tradições',
+                    'description': 'Mantendo viva a rica herança cultural afro-brasileira'
+                },
+                {
+                    'image': '11.jpg',
+                    'title': 'Educação e Cultura',
+                    'description': 'Promovendo conhecimento e respeito às tradições ancestrais'
+                },
+                {
+                    'image': '12.jpg',
+                    'title': 'Comunidade Unida',
+                    'description': 'Fortalecendo laços e valorizando a diversidade'
+                }
+            ]
+        },
         'pages': {
             'sobre': {
                 'title': 'Sobre o CASS',

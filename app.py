@@ -251,6 +251,29 @@ def admin_edit(section):
                 'number': request.form.get('number'),
                 'message': request.form.get('message')
             })
+        elif section == 'logo':
+            update_section('logo', {
+                'filename': request.form.get('filename'),
+                'alt': request.form.get('alt')
+            })
+            flash('Logo atualizada com sucesso!', 'success')
+            return redirect(url_for('admin_edit', section='logo'))
+        elif section == 'slides':
+            slides = []
+            slide_count = int(request.form.get('slide_count', 0))
+            for i in range(slide_count):
+                image = request.form.get(f'slide_image_{i}')
+                title = request.form.get(f'slide_title_{i}')
+                description = request.form.get(f'slide_description_{i}')
+                if image and title and description:
+                    slides.append({
+                        'image': image,
+                        'title': title,
+                        'description': description
+                    })
+            update_section('slides', {'slides': slides})
+            flash('Slides atualizados com sucesso!', 'success')
+            return redirect(url_for('admin_edit', section='slides'))
         elif section == 'consultas':
             # Processar dados da página Consultas
             consultas_data = data.get('pages', {}).get('consultas', {})
@@ -381,6 +404,10 @@ def admin_edit(section):
         section_data = data.get('pages', {}).get('sobre', {})
     elif section == 'consultas':
         section_data = data.get('pages', {}).get('consultas', {})
+    elif section == 'logo':
+        section_data = data.get('logo', {})
+    elif section == 'slides':
+        section_data = data.get('slides', {})
     else:
         section_data = get_section_data(section)
     return render_template(f'admin/edit_{section}.html', section=section, data=section_data)

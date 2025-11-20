@@ -13,7 +13,9 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="CASS - Congá de Aruanda São Sebastião" class="logo-img">
+                    <img src="{{ url_for('static', filename='images/' + (data.logo.filename if data and data.logo and data.logo.filename else 'logo.png')) }}" 
+                         alt="{{ data.logo.alt if data and data.logo and data.logo.alt else 'CASS - Congá de Aruanda São Sebastião' }}" 
+                         class="logo-img">
                 </div>
                 <nav class="nav">
                     <ul class="nav-list">
