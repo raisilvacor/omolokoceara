@@ -8,7 +8,8 @@ from admin.utils import (
 )
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # Chave secreta para sessões
+# Usar variável de ambiente para secret_key em produção, ou gerar uma nova
+app.secret_key = os.environ.get('SECRET_KEY', os.urandom(24).hex())
 
 @app.context_processor
 def inject_data():
@@ -304,5 +305,6 @@ def admin_user_delete(user_id):
     return redirect(url_for('admin_users'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
 
