@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "admin",
+            "password": "admin123",
+            "name": "Administrador",
+            "email": "admin@cass.org.br",
+            "active": true,
+            "created_at": "2025-01-01"
+        },
+        {
+            "id": 2,
+            "username": "newton",
+            "password": "Newton2025",
+            "name": "Newton",
+            "email": "teste@teste.com",
+            "active": true,
+            "created_at": "2025-11-19"
+        }
+    ]
+}

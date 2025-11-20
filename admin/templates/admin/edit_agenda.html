@@ -1,0 +1,130 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar Agenda - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: Agenda</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<form method="POST" class="edit-form" id="agenda-form">
+    <div class="form-group">
+        <label for="title">Título da Seção</label>
+        <input type="text" id="title" name="title" value="{{ data.title or 'Agenda' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea id="description" name="description" rows="3" required>{{ data.description or '' }}</textarea>
+    </div>
+    
+    <h2>Eventos</h2>
+    <div id="events-container">
+        {% if data.events %}
+            {% for event in data.events %}
+            {% set i = loop.index0 %}
+            <div class="card-item event-item">
+                <h3>Evento {{ i + 1 }}</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="day_{{ i }}">Dia</label>
+                        <input type="text" id="day_{{ i }}" name="day_{{ i }}" value="{{ event.day }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="month_{{ i }}">Mês</label>
+                        <input type="text" id="month_{{ i }}" name="month_{{ i }}" value="{{ event.month }}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title_{{ i }}">Título</label>
+                    <input type="text" id="title_{{ i }}" name="title_{{ i }}" value="{{ event.title }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="time_{{ i }}">Horário</label>
+                    <input type="text" id="time_{{ i }}" name="time_{{ i }}" value="{{ event.time }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="description_{{ i }}">Descrição</label>
+                    <textarea id="description_{{ i }}" name="description_{{ i }}" rows="2" required>{{ event.description }}</textarea>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="card-item event-item">
+                <h3>Evento 1</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="day_0">Dia</label>
+                        <input type="text" id="day_0" name="day_0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="month_0">Mês</label>
+                        <input type="text" id="month_0" name="month_0" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title_0">Título</label>
+                    <input type="text" id="title_0" name="title_0" required>
+                </div>
+                <div class="form-group">
+                    <label for="time_0">Horário</label>
+                    <input type="text" id="time_0" name="time_0" required>
+                </div>
+                <div class="form-group">
+                    <label for="description_0">Descrição</label>
+                    <textarea id="description_0" name="description_0" rows="2" required></textarea>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+    <input type="hidden" id="event_count" name="event_count" value="{{ data.events|length if data.events else 1 }}">
+    <button type="button" class="btn btn-secondary" onclick="addEvent()">Adicionar Evento</button>
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+
+<script>
+function addEvent() {
+    const container = document.getElementById('events-container');
+    const count = container.children.length;
+    const eventDiv = document.createElement('div');
+    eventDiv.className = 'card-item event-item';
+    eventDiv.innerHTML = `
+        <h3>Evento ${count + 1}</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="day_${count}">Dia</label>
+                <input type="text" id="day_${count}" name="day_${count}" required>
+            </div>
+            <div class="form-group">
+                <label for="month_${count}">Mês</label>
+                <input type="text" id="month_${count}" name="month_${count}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title_${count}">Título</label>
+            <input type="text" id="title_${count}" name="title_${count}" required>
+        </div>
+        <div class="form-group">
+            <label for="time_${count}">Horário</label>
+            <input type="text" id="time_${count}" name="time_${count}" required>
+        </div>
+        <div class="form-group">
+            <label for="description_${count}">Descrição</label>
+            <textarea id="description_${count}" name="description_${count}" rows="2" required></textarea>
+        </div>
+        <button type="button" class="btn btn-danger" onclick="removeEvent(this)">Remover</button>
+    `;
+    container.appendChild(eventDiv);
+    document.getElementById('event_count').value = count + 1;
+}
+
+function removeEvent(btn) {
+    btn.closest('.event-item').remove();
+    const container = document.getElementById('events-container');
+    document.getElementById('event_count').value = container.children.length;
+}
+</script>
+{% endblock %}
+

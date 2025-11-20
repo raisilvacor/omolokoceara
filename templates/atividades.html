@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Atividades - CASS{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Nossas Atividades</h1>
+        <p class="page-subtitle">Conheça os programas e eventos do CASS</p>
+    </div>
+</section>
+
+<section class="activities-content">
+    <div class="container">
+        <div class="activity-detail">
+            <h2>Estudos e Pesquisas</h2>
+            <p>
+                Realizamos grupos de estudo regulares sobre diversos aspectos das tradições 
+                afro-brasileiras, incluindo história, filosofia, mitologia, rituais e práticas 
+                culturais. Nossos estudos são conduzidos com rigor acadêmico e respeito às 
+                tradições.
+            </p>
+            <ul>
+                <li>Grupos de estudo semanais</li>
+                <li>Pesquisas sobre história e cultura afro-brasileira</li>
+                <li>Biblioteca especializada</li>
+                <li>Palestras e conferências</li>
+            </ul>
+        </div>
+
+        <div class="activity-detail">
+            <h2>Eventos Culturais</h2>
+            <p>
+                Organizamos eventos culturais que celebram a rica herança afro-brasileira, 
+                incluindo festivais, apresentações musicais, danças tradicionais e outras 
+                manifestações culturais. Todos os eventos são abertos à comunidade.
+            </p>
+            <ul>
+                <li>Festivais culturais</li>
+                <li>Apresentações de música e dança</li>
+                <li>Celebrações tradicionais</li>
+                <li>Feiras culturais</li>
+            </ul>
+        </div>
+
+        <div class="activity-detail">
+            <h2>Oficinas e Cursos</h2>
+            <p>
+                Oferecemos diversas oficinas e cursos práticos sobre aspectos da cultura 
+                afro-brasileira, incluindo música, dança, culinária, artesanato e outras 
+                expressões artísticas e culturais.
+            </p>
+            <ul>
+                <li>Oficinas de instrumentos musicais</li>
+                <li>Cursos de dança tradicional</li>
+                <li>Oficinas de culinária afro-brasileira</li>
+                <li>Artesanato e artes visuais</li>
+            </ul>
+        </div>
+
+        <div class="activity-detail">
+            <h2>Programas Educacionais</h2>
+            <p>
+                Desenvolvemos programas educacionais voltados para escolas, universidades e 
+                outras instituições, promovendo o conhecimento sobre a história e cultura 
+                afro-brasileira.
+            </p>
+            <ul>
+                <li>Visitas guiadas</li>
+                <li>Programas para escolas</li>
+                <li>Parcerias com universidades</li>
+                <li>Material educativo</li>
+            </ul>
+        </div>
+
+        <div class="activity-detail">
+            <h2>Atividades Comunitárias</h2>
+            <p>
+                Realizamos diversas atividades voltadas para o fortalecimento da comunidade, 
+                incluindo ações sociais, projetos de inclusão e atividades de integração.
+            </p>
+            <ul>
+                <li>Ações sociais</li>
+                <li>Projetos de inclusão</li>
+                <li>Atividades de integração comunitária</li>
+                <li>Programas de apoio</li>
+            </ul>
+        </div>
+
+        <div class="contact-cta">
+            <h2>Interessado em nossas atividades?</h2>
+            <p>Entre em contato conosco para mais informações sobre horários, inscrições e programação.</p>
+            <a href="{{ url_for('contato') }}" class="btn btn-primary">Entre em contato</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

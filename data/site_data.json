@@ -1,0 +1,212 @@
+{
+    "logo": {
+        "filename": "logo.png",
+        "alt": "CASS - Congá de Aruanda São Sebastião"
+    },
+    "menu": {
+        "items": [
+            {"name": "Início", "url": "/", "active": true},
+            {"name": "Sobre", "url": "/sobre", "active": true},
+            {"name": "Atividades", "url": "/atividades", "active": true},
+            {"name": "Consultas", "url": "/consultas", "active": true},
+            {"name": "Contato", "url": "/contato", "active": true}
+        ]
+    },
+    "welcome": {
+        "title": "Bem-vindo ao CASS",
+        "subtitle": "Congá de Aruanda São Sebastião",
+        "description": "Um espaço dedicado à preservação, estudo e difusão das tradições culturais e espirituais afro-brasileiras, promovendo o respeito, a diversidade e o conhecimento ancestral.",
+        "button_text": "Consultar agora",
+        "button_url": "/consultas"
+    },
+    "valores": {
+        "title": "Nossos Valores",
+        "items": [
+            {
+                "icon": "📿",
+                "title": "Tradição",
+                "description": "Preservação e transmissão dos saberes ancestrais com respeito e autenticidade."
+            },
+            {
+                "icon": "🌿",
+                "title": "Cultura",
+                "description": "Valorização da rica herança cultural afro-brasileira em todas as suas expressões."
+            },
+            {
+                "icon": "🤝",
+                "title": "Comunidade",
+                "description": "Fortalecimento dos laços comunitários e promoção do respeito à diversidade."
+            },
+            {
+                "icon": "📚",
+                "title": "Educação",
+                "description": "Disseminação de conhecimento sobre história, cultura e tradições afro-brasileiras."
+            }
+        ]
+    },
+    "sobre": {
+        "title": "Sobre o CASS",
+        "content": [
+            "O Congá de Aruanda São Sebastião é um instituto cultural e espiritual comprometido com a preservação e difusão das tradições afro-brasileiras. Nossa missão é promover o conhecimento, o respeito e a valorização dessas tradições milenares, contribuindo para a construção de uma sociedade mais inclusiva e culturalmente rica.",
+            "Trabalhamos com atividades educacionais, culturais e espirituais, sempre respeitando a diversidade e promovendo o diálogo inter-religioso e intercultural."
+        ],
+        "button_text": "Saiba mais sobre nós",
+        "button_url": "/sobre"
+    },
+    "atividades": {
+        "title": "Nossas Atividades",
+        "items": [
+            {
+                "title": "Estudos e Pesquisas",
+                "description": "Grupos de estudo sobre história, cultura e tradições afro-brasileiras."
+            },
+            {
+                "title": "Eventos Culturais",
+                "description": "Celebrações, festivais e apresentações culturais abertas à comunidade."
+            },
+            {
+                "title": "Oficinas e Cursos",
+                "description": "Oficinas de música, dança, culinária e artesanato tradicional."
+            }
+        ],
+        "button_text": "Veja todas as atividades",
+        "button_url": "/atividades"
+    },
+    "agenda": {
+        "title": "Agenda",
+        "description": "Confira nossa programação de eventos, atividades e celebrações. Fique por dentro de tudo que acontece no CASS.",
+        "events": [
+            {
+                "day": "15",
+                "month": "Nov",
+                "title": "Grupo de Estudos",
+                "time": "19:00 - 21:00",
+                "description": "Estudo sobre tradições e história afro-brasileira"
+            },
+            {
+                "day": "20",
+                "month": "Nov",
+                "title": "Celebração Cultural",
+                "time": "18:00 - 22:00",
+                "description": "Festival de música e dança tradicional"
+            },
+            {
+                "day": "25",
+                "month": "Nov",
+                "title": "Oficina de Culinária",
+                "time": "14:00 - 17:00",
+                "description": "Aprenda receitas tradicionais afro-brasileiras"
+            },
+            {
+                "day": "30",
+                "month": "Nov",
+                "title": "Palestra Cultural",
+                "time": "19:00 - 21:00",
+                "description": "História e importância das tradições ancestrais"
+            }
+        ]
+    },
+    "videos": {
+        "title": "Vídeos",
+        "description": "Confira nossos vídeos sobre cultura, tradições e atividades do CASS.",
+        "videos": [
+            {
+                "id": "dQw4w9WgXcQ",
+                "title": "Título do Vídeo 1"
+            },
+            {
+                "id": "dQw4w9WgXcQ",
+                "title": "Título do Vídeo 2"
+            },
+            {
+                "id": "dQw4w9WgXcQ",
+                "title": "Título do Vídeo 3"
+            }
+        ]
+    },
+    "footer": {
+        "name": "CASS",
+        "subtitle": "Congá de Aruanda São Sebastião",
+        "description": "Preservando tradições e cultura afro-brasileira",
+        "email": "contato@cass.org.br",
+        "phone": "(00) 0000-0000",
+        "address": "Rua Exemplo, 123\nBairro, Cidade - Estado\nCEP: 00000-000",
+        "hours": "Segunda a Sexta: 9h às 18h\nSábado: 9h às 13h\nDomingo: Fechado",
+        "copyright": "2025 CASS - Congá de Aruanda São Sebastião. Todos os direitos reservados.",
+        "social_media": {
+            "whatsapp": "https://wa.me/5500000000000",
+            "instagram": "https://instagram.com/cass",
+            "facebook": "https://facebook.com/cass",
+            "youtube": "https://youtube.com/@cass"
+        }
+    },
+    "whatsapp": {
+        "number": "5500000000000",
+        "message": "Olá! Gostaria de saber mais sobre o CASS."
+    },
+    "pages": {
+        "sobre": {
+            "title": "Sobre o CASS",
+            "subtitle": "Conheça nossa história e missão",
+            "historia": {
+                "title": "Nossa História",
+                "paragraphs": [
+                    "O Congá de Aruanda São Sebastião (CASS) foi fundado com o propósito de preservar, estudar e difundir as tradições culturais e espirituais afro-brasileiras. Nossa instituição nasceu da necessidade de criar um espaço respeitoso e acolhedor para a prática, estudo e transmissão desses saberes ancestrais.",
+                    "Ao longo dos anos, temos trabalhado incansavelmente para promover o conhecimento sobre a rica herança cultural afro-brasileira, sempre com respeito à diversidade e compromisso com a verdade histórica e cultural."
+                ]
+            },
+            "missao": {
+                "title": "Nossa Missão",
+                "intro": "Promover a preservação, estudo e difusão das tradições culturais e espirituais afro-brasileiras, contribuindo para:",
+                "list": [
+                    "A preservação da memória e dos saberes ancestrais",
+                    "O combate ao preconceito e à discriminação religiosa",
+                    "A educação sobre a história e cultura afro-brasileira",
+                    "O fortalecimento da identidade cultural",
+                    "O diálogo inter-religioso e intercultural",
+                    "A valorização da diversidade cultural brasileira"
+                ]
+            },
+            "valores": {
+                "title": "Nossos Valores",
+                "items": [
+                    {
+                        "title": "Respeito",
+                        "description": "Respeitamos todas as tradições e crenças, promovendo o diálogo e a tolerância."
+                    },
+                    {
+                        "title": "Autenticidade",
+                        "description": "Preservamos as tradições com fidelidade e respeito às origens."
+                    },
+                    {
+                        "title": "Inclusão",
+                        "description": "Buscamos criar espaços acolhedores para todas as pessoas."
+                    },
+                    {
+                        "title": "Educação",
+                        "description": "Promovemos o conhecimento e a compreensão sobre nossa cultura."
+                    }
+                ]
+            },
+            "visao": {
+                "title": "Nossa Visão",
+                "content": "Ser reconhecido como uma referência na preservação e difusão das tradições afro-brasileiras, contribuindo para uma sociedade mais justa, inclusiva e culturalmente rica, onde todas as tradições sejam respeitadas e valorizadas."
+            }
+        },
+        "atividades": {
+            "title": "Nossas Atividades",
+            "subtitle": "Conheça os programas e eventos do CASS",
+            "activities": []
+        },
+        "consultas": {
+            "title": "Consultas",
+            "subtitle": "Atendimento espiritual e orientação",
+            "content": {}
+        },
+        "contato": {
+            "title": "Entre em Contato",
+            "subtitle": "Estamos à disposição para esclarecer dúvidas e receber sua mensagem"
+        }
+    }
+}
+

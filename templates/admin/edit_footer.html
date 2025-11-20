@@ -1,0 +1,78 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar Rodapé - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: Rodapé</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<form method="POST" class="edit-form">
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" value="{{ data.name or '' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="subtitle">Subtítulo</label>
+        <input type="text" id="subtitle" name="subtitle" value="{{ data.subtitle or '' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea id="description" name="description" rows="3" required>{{ data.description or '' }}</textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="{{ data.email or '' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="phone">Telefone</label>
+        <input type="text" id="phone" name="phone" value="{{ data.phone or '' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="address">Endereço (use \n para quebras de linha)</label>
+        <textarea id="address" name="address" rows="4" required>{{ data.address or '' }}</textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="hours">Horário de Atendimento (use \n para quebras de linha)</label>
+        <textarea id="hours" name="hours" rows="4" required>{{ data.hours or '' }}</textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="copyright">Copyright</label>
+        <input type="text" id="copyright" name="copyright" value="{{ data.copyright or '' }}" required>
+    </div>
+    
+    <h2>Redes Sociais</h2>
+    <div class="card-item">
+        <div class="form-group">
+            <label for="whatsapp_url">WhatsApp (URL completa)</label>
+            <input type="url" id="whatsapp_url" name="whatsapp_url" value="{{ data.social_media.whatsapp if data.social_media else '' }}" placeholder="https://wa.me/5511987654321">
+        </div>
+        
+        <div class="form-group">
+            <label for="instagram_url">Instagram (URL completa)</label>
+            <input type="url" id="instagram_url" name="instagram_url" value="{{ data.social_media.instagram if data.social_media else '' }}" placeholder="https://instagram.com/seu_perfil">
+        </div>
+        
+        <div class="form-group">
+            <label for="facebook_url">Facebook (URL completa)</label>
+            <input type="url" id="facebook_url" name="facebook_url" value="{{ data.social_media.facebook if data.social_media else '' }}" placeholder="https://facebook.com/seu_perfil">
+        </div>
+        
+        <div class="form-group">
+            <label for="youtube_url">YouTube (URL completa)</label>
+            <input type="url" id="youtube_url" name="youtube_url" value="{{ data.social_media.youtube if data.social_media else '' }}" placeholder="https://youtube.com/@seu_canal">
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+{% endblock %}
+

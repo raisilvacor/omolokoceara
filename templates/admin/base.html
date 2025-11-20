@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Painel Administrativo - CASS{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <nav class="admin-nav">
+        <div class="nav-container">
+            <h1 class="nav-logo">CASS Admin</h1>
+            <div class="nav-links">
+                <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('admin_logout') }}">Sair</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('admin_edit', section='welcome') }}">Bem-vindo ao CASS</a></li>
+                <li><a href="{{ url_for('admin_edit', section='valores') }}">Nossos Valores</a></li>
+                <li><a href="{{ url_for('admin_edit', section='sobre') }}">Sobre o CASS</a></li>
+                <li><a href="{{ url_for('admin_edit', section='atividades') }}">Nossas Atividades</a></li>
+                <li><a href="{{ url_for('admin_edit', section='agenda') }}">Agenda</a></li>
+                <li><a href="{{ url_for('admin_edit', section='videos') }}">Vídeos</a></li>
+                <li><a href="{{ url_for('admin_edit', section='footer') }}">Rodapé</a></li>
+                <li><a href="{{ url_for('admin_edit', section='whatsapp') }}">WhatsApp</a></li>
+                <li><a href="{{ url_for('admin_users') }}">Usuários</a></li>
+            </ul>
+        </aside>
+        
+        <main class="admin-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>
+

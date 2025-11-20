@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Início - CASS{% endblock %}
+
+{% block content %}
+<section class="carousel-section">
+    <div class="carousel-container">
+        <div class="carousel-slides">
+            <div class="carousel-slide active slide-1">
+                <div class="slide-content">
+                    <h2>Preservando Tradições</h2>
+                    <p>Mantendo viva a rica herança cultural afro-brasileira</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-2">
+                <div class="slide-content">
+                    <h2>Educação e Cultura</h2>
+                    <p>Promovendo conhecimento e respeito às tradições ancestrais</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-3">
+                <div class="slide-content">
+                    <h2>Comunidade Unida</h2>
+                    <p>Fortalecendo laços e valorizando a diversidade</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="welcome-section">
+            <h2 class="section-title">Bem-vindo ao CASS</h2>
+            <p class="welcome-subtitle">Congá de Aruanda São Sebastião</p>
+            <p class="welcome-description">
+                Um espaço dedicado à preservação, estudo e difusão das tradições 
+                culturais e espirituais afro-brasileiras, promovendo o respeito, 
+                a diversidade e o conhecimento ancestral.
+            </p>
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <a href="{{ url_for('consultas') }}" class="btn btn-primary">Consultar agora</a>
+            </div>
+        </div>
+        <h2 class="section-title">Nossos Valores</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📿</div>
+                <h3>Tradição</h3>
+                <p>Preservação e transmissão dos saberes ancestrais com respeito e autenticidade.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3>Cultura</h3>
+                <p>Valorização da rica herança cultural afro-brasileira em todas as suas expressões.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Comunidade</h3>
+                <p>Fortalecimento dos laços comunitários e promoção do respeito à diversidade.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Educação</h3>
+                <p>Disseminação de conhecimento sobre história, cultura e tradições afro-brasileiras.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-preview">
+    <div class="container">
+        <div class="about-preview-content">
+            <div class="about-preview-text">
+                <h2 class="section-title">Sobre o CASS</h2>
+                <p>
+                    CASS (Congá de Aruanda São Sebastião) é um templo de tradição do Omolokô na cidade de Fortaleza, Estado do Ceará, fundado em 2009. 
+A comunidade é liderada pelo Tata Ti Inkice Newton de Oxóssi, também conhecido como Tata Ti Inkice Kaindekewala, que foi iniciado no Omolokô no Ceará em 1991 e tem um papel ativo na preservação dos fundamentos ancestrais e na difusão dessa tradição na região. 
+O Omolokô é reconhecido como um culto de matriz africana que incorpora elementos das culturas banto, ameríndias e espíritas, sendo considerado uma expressão viva das intersecções culturais no Brasil. A comunidade CASS, sob a direção de Tata Newton, faz parte do movimento de povos e comunidades tradicionais de terreiros do Ceará, que têm buscado o reconhecimento e a valorização de suas práticas e espaços sagrados.
+                </p>
+                <p>
+                    Trabalhamos com atividades educacionais, culturais e espirituais, sempre 
+                    respeitando a diversidade e promovendo o diálogo inter-religioso e 
+                    intercultural.
+                </p>
+                <a href="{{ url_for('sobre') }}" class="btn btn-secondary">Saiba mais sobre nós</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="activities-preview">
+    <div class="container">
+        <h2 class="section-title">Nossas Atividades</h2>
+        <div class="activities-grid">
+            <div class="activity-card">
+                <h3>Estudos e Pesquisas</h3>
+                <p>Grupos de estudo sobre história, cultura e tradições afro-brasileiras.</p>
+            </div>
+            <div class="activity-card">
+                <h3>Eventos Culturais</h3>
+                <p>Celebrações, festivais e apresentações culturais abertas à comunidade.</p>
+            </div>
+            <div class="activity-card">
+                <h3>Oficinas e Cursos</h3>
+                <p>Oficinas de música, dança, culinária e artesanato tradicional.</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="{{ url_for('atividades') }}" class="btn btn-primary">Veja todas as atividades</a>
+        </div>
+    </div>
+</section>
+
+<section class="agenda-section">
+    <div class="container">
+        <h2 class="section-title">Agenda</h2>
+        <div class="agenda-content">
+            <div class="agenda-intro">
+                <p>
+                    Confira nossa programação de eventos, atividades e celebrações. 
+                    Fique por dentro de tudo que acontece no CASS.
+                </p>
+            </div>
+            <div class="agenda-grid">
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="agenda-day">15</span>
+                        <span class="agenda-month">Nov</span>
+                    </div>
+                    <div class="agenda-details">
+                        <h3>Grupo de Estudos</h3>
+                        <p class="agenda-time">19:00 - 21:00</p>
+                        <p class="agenda-description">Estudo sobre tradições e história afro-brasileira</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="agenda-day">20</span>
+                        <span class="agenda-month">Nov</span>
+                    </div>
+                    <div class="agenda-details">
+                        <h3>Celebração Cultural</h3>
+                        <p class="agenda-time">18:00 - 22:00</p>
+                        <p class="agenda-description">Festival de música e dança tradicional</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="agenda-day">25</span>
+                        <span class="agenda-month">Nov</span>
+                    </div>
+                    <div class="agenda-details">
+                        <h3>Oficina de Culinária</h3>
+                        <p class="agenda-time">14:00 - 17:00</p>
+                        <p class="agenda-description">Aprenda receitas tradicionais afro-brasileiras</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="agenda-day">30</span>
+                        <span class="agenda-month">Nov</span>
+                    </div>
+                    <div class="agenda-details">
+                        <h3>Palestra Cultural</h3>
+                        <p class="agenda-time">19:00 - 21:00</p>
+                        <p class="agenda-description">História e importância das tradições ancestrais</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <p class="agenda-note">
+                    Para mais informações sobre eventos e atividades, entre em contato conosco.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="videos-section">
+    <div class="container">
+        <h2 class="section-title">Vídeos</h2>
+        <div class="videos-intro">
+            <p>
+                Confira nossos vídeos sobre cultura, tradições e atividades do CASS.
+            </p>
+        </div>
+        <div class="videos-grid">
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Vídeo 1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>Título do Vídeo 1</h3>
+            </div>
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Vídeo 2" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>Título do Vídeo 2</h3>
+            </div>
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Vídeo 3" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>Título do Vídeo 3</h3>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

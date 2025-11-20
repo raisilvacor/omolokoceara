@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar Valores - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: Nossos Valores</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<form method="POST" class="edit-form">
+    <div class="form-group">
+        <label for="title">Título da Seção</label>
+        <input type="text" id="title" name="title" value="{{ data.title or 'Nossos Valores' }}" required>
+    </div>
+    
+    <h2>Valores</h2>
+    {% for i in range(4) %}
+    <div class="card-item">
+        <h3>Valor {{ i + 1 }}</h3>
+        <div class="form-group">
+            <label for="icon_{{ i }}">Ícone (emoji)</label>
+            <input type="text" id="icon_{{ i }}" name="icon_{{ i }}" value="{{ data.items[i].icon if data.items and data.items[i] else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="title_{{ i }}">Título</label>
+            <input type="text" id="title_{{ i }}" name="title_{{ i }}" value="{{ data.items[i].title if data.items and data.items[i] else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="description_{{ i }}">Descrição</label>
+            <textarea id="description_{{ i }}" name="description_{{ i }}" rows="3" required>{{ data.items[i].description if data.items and data.items[i] else '' }}</textarea>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+{% endblock %}
+

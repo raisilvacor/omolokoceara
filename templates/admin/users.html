@@ -1,0 +1,61 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Gerenciar Usuários - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Gerenciar Usuários</h1>
+    <a href="{{ url_for('admin_user_new') }}" class="btn btn-primary">Novo Usuário</a>
+</div>
+
+<div class="users-table">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome de Usuário</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Criado em</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if users %}
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% if user.active %}
+                            <span class="status-active">Ativo</span>
+                        {% else %}
+                            <span class="status-inactive">Inativo</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ user.created_at }}</td>
+                    <td class="actions">
+                        <a href="{{ url_for('admin_user_edit', user_id=user.id) }}" class="btn btn-secondary btn-small">Editar</a>
+                        {% if user.id != session.get('admin_user_id') %}
+                        <form method="POST" action="{{ url_for('admin_user_delete', user_id=user.id) }}" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja deletar este usuário?');">
+                            <button type="submit" class="btn btn-danger btn-small">Deletar</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 2rem;">
+                        Nenhum usuário cadastrado.
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

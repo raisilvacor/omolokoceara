@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar Bem-vindo - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: Bem-vindo ao CASS</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<form method="POST" class="edit-form">
+    <div class="form-group">
+        <label for="title">Título</label>
+        <input type="text" id="title" name="title" value="{{ data.title or '' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="subtitle">Subtítulo</label>
+        <input type="text" id="subtitle" name="subtitle" value="{{ data.subtitle or '' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea id="description" name="description" rows="5" required>{{ data.description or '' }}</textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="button_text">Texto do Botão</label>
+        <input type="text" id="button_text" name="button_text" value="{{ data.button_text or '' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="button_url">URL do Botão</label>
+        <input type="text" id="button_url" name="button_url" value="{{ data.button_url or '' }}" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+{% endblock %}
+

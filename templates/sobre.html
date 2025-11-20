@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Sobre - CASS{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">{{ sobre.title if sobre else 'Sobre o CASS' }}</h1>
+        <p class="page-subtitle">{{ sobre.subtitle if sobre else 'Conheça nossa história e missão' }}</p>
+    </div>
+</section>
+
+<section class="about-content">
+    <div class="container">
+        {% if sobre and sobre.historia %}
+        <div class="about-section">
+            <h2>{{ sobre.historia.title }}</h2>
+            {% for paragraph in sobre.historia.paragraphs %}
+            <p>{{ paragraph }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if sobre and sobre.missao %}
+        <div class="about-section">
+            <h2>{{ sobre.missao.title }}</h2>
+            <p>{{ sobre.missao.intro }}</p>
+            {% if sobre.missao.list %}
+            <ul class="mission-list">
+                {% for item in sobre.missao.list %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if sobre and sobre.valores %}
+        <div class="about-section">
+            <h2>{{ sobre.valores.title }}</h2>
+            <div class="values-grid">
+                {% for valor in sobre.valores.items %}
+                <div class="value-item">
+                    <h3>{{ valor.title }}</h3>
+                    <p>{{ valor.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if sobre and sobre.visao %}
+        <div class="about-section">
+            <h2>{{ sobre.visao.title }}</h2>
+            <p>{{ sobre.visao.content }}</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar WhatsApp - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: WhatsApp</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<form method="POST" class="edit-form">
+    <div class="form-group">
+        <label for="number">Número do WhatsApp</label>
+        <input type="text" id="number" name="number" value="{{ data.number or '' }}" required placeholder="5500000000000">
+        <small>Formato: 55 + DDD + número (sem espaços, parênteses ou hífens). Ex: 5511987654321</small>
+    </div>
+    
+    <div class="form-group">
+        <label for="message">Mensagem Pré-preenchida</label>
+        <textarea id="message" name="message" rows="3" required>{{ data.message or '' }}</textarea>
+        <small>Esta mensagem aparecerá automaticamente quando o usuário clicar no botão do WhatsApp</small>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar Vídeos - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: Vídeos</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<form method="POST" class="edit-form" id="videos-form">
+    <div class="form-group">
+        <label for="title">Título da Seção</label>
+        <input type="text" id="title" name="title" value="{{ data.title or 'Vídeos' }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea id="description" name="description" rows="3" required>{{ data.description or '' }}</textarea>
+    </div>
+    
+    <h2>Vídeos do YouTube</h2>
+    <div id="videos-container">
+        {% if data.videos %}
+            {% for video in data.videos %}
+            {% set i = loop.index0 %}
+            <div class="card-item video-item">
+                <h3>Vídeo {{ i + 1 }}</h3>
+                <div class="form-group">
+                    <label for="video_id_{{ i }}">ID do Vídeo do YouTube</label>
+                    <input type="text" id="video_id_{{ i }}" name="video_id_{{ i }}" value="{{ video.id }}" required placeholder="Ex: dQw4w9WgXcQ">
+                    <small>Cole apenas o ID do vídeo (não a URL completa)</small>
+                </div>
+                <div class="form-group">
+                    <label for="video_title_{{ i }}">Título do Vídeo</label>
+                    <input type="text" id="video_title_{{ i }}" name="video_title_{{ i }}" value="{{ video.title }}" required>
+                </div>
+                <button type="button" class="btn btn-danger" onclick="removeVideo(this)">Remover</button>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="card-item video-item">
+                <h3>Vídeo 1</h3>
+                <div class="form-group">
+                    <label for="video_id_0">ID do Vídeo do YouTube</label>
+                    <input type="text" id="video_id_0" name="video_id_0" required placeholder="Ex: dQw4w9WgXcQ">
+                    <small>Cole apenas o ID do vídeo (não a URL completa)</small>
+                </div>
+                <div class="form-group">
+                    <label for="video_title_0">Título do Vídeo</label>
+                    <input type="text" id="video_title_0" name="video_title_0" required>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+    <input type="hidden" id="video_count" name="video_count" value="{{ data.videos|length if data.videos else 1 }}">
+    <button type="button" class="btn btn-secondary" onclick="addVideo()">Adicionar Vídeo</button>
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
+
+<script>
+function addVideo() {
+    const container = document.getElementById('videos-container');
+    const count = container.children.length;
+    const videoDiv = document.createElement('div');
+    videoDiv.className = 'card-item video-item';
+    videoDiv.innerHTML = `
+        <h3>Vídeo ${count + 1}</h3>
+        <div class="form-group">
+            <label for="video_id_${count}">ID do Vídeo do YouTube</label>
+            <input type="text" id="video_id_${count}" name="video_id_${count}" required placeholder="Ex: dQw4w9WgXcQ">
+            <small>Cole apenas o ID do vídeo (não a URL completa)</small>
+        </div>
+        <div class="form-group">
+            <label for="video_title_${count}">Título do Vídeo</label>
+            <input type="text" id="video_title_${count}" name="video_title_${count}" required>
+        </div>
+        <button type="button" class="btn btn-danger" onclick="removeVideo(this)">Remover</button>
+    `;
+    container.appendChild(videoDiv);
+    document.getElementById('video_count').value = count + 1;
+}
+
+function removeVideo(btn) {
+    btn.closest('.video-item').remove();
+    const container = document.getElementById('videos-container');
+    document.getElementById('video_count').value = container.children.length;
+}
+</script>
+{% endblock %}
+

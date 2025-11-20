@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Consultas - CASS{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Consultas</h1>
+        <p class="page-subtitle">Atendimento espiritual e orientação</p>
+    </div>
+</section>
+
+<section class="consultas-content">
+    <div class="container">
+        <div class="consultas-intro">
+            <h2>Sobre Nossas Consultas</h2>
+            <p>
+                O CASS oferece consultas espirituais realizadas com respeito, ética e dedicação, 
+                seguindo as tradições afro-brasileiras. Nossos atendimentos são conduzidos por 
+                pessoas experientes e comprometidas com o bem-estar espiritual e emocional de 
+                todos que nos procuram.
+            </p>
+            <p>
+                Realizamos consultas para orientação espiritual, esclarecimento de dúvidas e 
+                apoio em momentos de necessidade, sempre com respeito à individualidade e às 
+                crenças de cada pessoa.
+            </p>
+        </div>
+
+        <div class="consultas-info">
+            <div class="info-card">
+                <h3>Como Funciona</h3>
+                <p>
+                    As consultas são realizadas mediante agendamento prévio. Entre em contato 
+                    conosco para verificar disponibilidade e agendar seu horário.
+                </p>
+                <ul>
+                    <li>Agendamento prévio obrigatório</li>
+                    <li>Atendimento presencial ou online</li>
+                    <li>Respeito e sigilo garantidos</li>
+                    <li>Ambiente acolhedor e respeitoso</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Horários de Atendimento</h3>
+                <p>
+                    Nossos horários de atendimento para consultas variam conforme a disponibilidade. 
+                    Entre em contato para agendar o melhor horário para você.
+                </p>
+                <div class="horarios">
+                    <p><strong>Segunda a Sexta:</strong> 9h às 18h</p>
+                    <p><strong>Sábado:</strong> 9h às 13h</p>
+                    <p><strong>Domingo:</strong> Fechado</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>Valores e Contribuições</h3>
+                <p>
+                    As consultas são realizadas mediante contribuição voluntária ou valores 
+                    previamente acordados. Entre em contato para mais informações sobre valores 
+                    e formas de pagamento.
+                </p>
+            </div>
+        </div>
+
+        <div class="consultas-cta">
+            <h2>Agende sua Consulta</h2>
+            <p>
+                Para agendar sua consulta, entre em contato conosco pelo WhatsApp. 
+                Estamos à disposição para esclarecer dúvidas e agendar o melhor horário para você.
+            </p>
+            <div class="cta-buttons">
+                {% if data and data.whatsapp and data.whatsapp.number %}
+                <a href="https://wa.me/{{ data.whatsapp.number }}?text={{ 'Olá! Gostaria de agendar uma consulta.'|urlencode }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <span style="margin-right: 8px;">📱</span> Agendar pelo WhatsApp
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="consultas-observacoes">
+            <h3>Observações Importantes</h3>
+            <ul>
+                <li>É necessário confirmar o agendamento com antecedência</li>
+                <li>Em caso de desistência, favor avisar com pelo menos 24h de antecedência</li>
+                <li>Respeitamos todas as crenças e tradições religiosas</li>
+                <li>Nossas consultas são realizadas com ética e respeito</li>
+                <li>O sigilo e a privacidade são garantidos em todos os atendimentos</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

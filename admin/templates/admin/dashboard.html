@@ -1,0 +1,61 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p>Bem-vindo ao painel administrativo do CASS</p>
+</div>
+
+<div class="dashboard-grid">
+    <div class="dashboard-card">
+        <h3>Bem-vindo ao CASS</h3>
+        <p>Edite a seção de boas-vindas da página inicial</p>
+        <a href="{{ url_for('admin_edit', section='welcome') }}" class="btn btn-primary">Editar</a>
+    </div>
+    
+    <div class="dashboard-card">
+        <h3>Nossos Valores</h3>
+        <p>Gerencie os valores exibidos na página inicial</p>
+        <a href="{{ url_for('admin_edit', section='valores') }}" class="btn btn-primary">Editar</a>
+    </div>
+    
+    <div class="dashboard-card">
+        <h3>Sobre o CASS</h3>
+        <p>Edite o conteúdo da página Sobre</p>
+        <a href="{{ url_for('admin_edit', section='sobre') }}" class="btn btn-primary">Editar</a>
+    </div>
+    
+    <div class="dashboard-card">
+        <h3>Nossas Atividades</h3>
+        <p>Gerencie as atividades exibidas</p>
+        <a href="{{ url_for('admin_edit', section='atividades') }}" class="btn btn-primary">Editar</a>
+    </div>
+    
+    <div class="dashboard-card">
+        <h3>Agenda</h3>
+        <p>Gerencie os eventos da agenda</p>
+        <a href="{{ url_for('admin_edit', section='agenda') }}" class="btn btn-primary">Editar</a>
+    </div>
+    
+    <div class="dashboard-card">
+        <h3>Vídeos</h3>
+        <p>Gerencie os vídeos do YouTube</p>
+        <a href="{{ url_for('admin_edit', section='videos') }}" class="btn btn-primary">Editar</a>
+    </div>
+    
+    <div class="dashboard-card">
+        <h3>Rodapé</h3>
+        <p>Edite as informações do rodapé</p>
+        <a href="{{ url_for('admin_edit', section='footer') }}" class="btn btn-primary">Editar</a>
+    </div>
+    
+    <div class="dashboard-card">
+        <h3>WhatsApp</h3>
+        <p>Configure o botão flutuante do WhatsApp</p>
+        <a href="{{ url_for('admin_edit', section='whatsapp') }}" class="btn btn-primary">Editar</a>
+    </div>
+</div>
+{% endblock %}
+

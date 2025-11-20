@@ -1,0 +1,3 @@
+crie um site en python e HTML5, nada de flash por favor, o Site é para um intituto de macumba, entao quero um site mais institucional e profissional para esse instituto com uma pegada institucional e cultural na area da macumba, o Nome do Sitevai ser CASS - Congá de Aruanda São Sebastião
+
+python app.py

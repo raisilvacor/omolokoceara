@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Editar Atividades - CASS Admin{% endblock %}
+
+{% block content %}
+<div class="edit-header">
+    <h1>Editar: Nossas Atividades</h1>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Voltar</a>
+</div>
+
+<div class="alert alert-success">
+    <p><strong>Nota:</strong> A página "Atividades" está sendo carregada diretamente do template. Para editar completamente, você pode modificar o arquivo <code>templates/atividades.html</code> ou implementar um editor mais avançado.</p>
+</div>
+
+<p>Esta seção será expandida em breve com um editor completo para a página Atividades.</p>
+{% endblock %}
+
